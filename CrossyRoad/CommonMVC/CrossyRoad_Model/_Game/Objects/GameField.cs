@@ -142,7 +142,7 @@ namespace CrossyRoad_Model._Game.Objects
       {
         Level nextLevel = GetNeighbourLevel(parMoveUp);
         float roundedX = (float)Math.Round(Player.AbsoluteX);
-        if (nextLevel is Field field && !field.HasObjectOnX(roundedX) || nextLevel is Road)
+        if ((nextLevel is Field field && !field.HasObjectOnX(roundedX)) || nextLevel is Road)
         {
           Player.X = roundedX;
           Player.Parent = nextLevel;
@@ -153,6 +153,7 @@ namespace CrossyRoad_Model._Game.Objects
           if (log != null)
           {
             Player.X = (float)Math.Round(Player.AbsoluteX - log.AbsoluteX);
+            Player.X = Player.X < 0 ? 0 : (Player.X + Player.Width > log.Width ? log.Width - 1 : Player.X);
             Player.Parent = log;
           }
           else
