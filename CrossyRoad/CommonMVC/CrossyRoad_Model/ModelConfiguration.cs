@@ -147,6 +147,10 @@ namespace CrossyRoad_Model
     /// Расстояние от левого края игрового поля до игрока
     /// </summary>
     public const int PLAYER_X_AND_GAME_FIELD_X_DISTANCE = CELLS_X_COUNT / 2;
+    /// <summary>
+    /// Минимальный промежуток времени между движениями игрока (мс)
+    /// </summary>
+    public const int MIN_TIME_BETWEEN_PLAYER_MOTIONS = 300;
     #endregion
 
     #region Поле

@@ -2,6 +2,7 @@
 using CrossyRoad_ConsoleView;
 using CrossyRoad_ConsoleView._Game;
 using CrossyRoad_Controller._Game;
+using CrossyRoad_Model;
 using CrossyRoad_Model._Game;
 using CrossyRoad_Model._Game.Objects;
 using CrossyRoad_Model._Highscores;
@@ -81,7 +82,7 @@ namespace CrossyRoad_ConsoleController._Game
           {
             Game.MovePlayer(_keyDirections[key]);
           }
-          Thread.Sleep(300);
+          Thread.Sleep(ModelConfiguration.MIN_TIME_BETWEEN_PLAYER_MOTIONS);
         }
       }
       catch (ThreadInterruptedException)

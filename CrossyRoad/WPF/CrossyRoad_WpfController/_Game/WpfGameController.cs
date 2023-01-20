@@ -1,4 +1,5 @@
 ﻿using CrossyRoad_Controller._Game;
+using CrossyRoad_Model;
 using CrossyRoad_Model._Game;
 using CrossyRoad_Model._Game.Objects;
 using CrossyRoad_Model._Highscores;
@@ -31,6 +32,10 @@ namespace CrossyRoad_WpfController._Game
       { Key.Left, Directions.Left },
       { Key.Right, Directions.Right }
     };
+    /// <summary>
+    /// Время с последнего перемещения игрока
+    /// </summary>
+    private Stopwatch _playerMotionWatch;
 
     /// <summary>
     /// Конструктор контроллера окна с игровым процессом в приложении WPF
@@ -39,6 +44,7 @@ namespace CrossyRoad_WpfController._Game
     public WpfGameController(Game parGame)
       : base(parGame, new WpfGameView(parGame))
     {
+      _playerMotionWatch = new Stopwatch();
     }
 
     /// <summary>
@@ -46,6 +52,7 @@ namespace CrossyRoad_WpfController._Game
     /// </summary>
     public override void Start()
     {
+      _playerMotionWatch.Restart();
       Game.GameOver += StopGame;
       ((WpfGameView)GameView).CountDownEnded += StartGame;
       WpfUtils.AddSizeChangedHandlerToWindow(RedrawGameField);
@@ -109,7 +116,17 @@ namespace CrossyRoad_WpfController._Game
       }
       if (_keyDirections.ContainsKey(args.Key))
       {
-        Game.MovePlayer(_keyDirections[args.Key]);
+        _playerMotionWatch.Stop();
+        long elapsedMilliseconds = _playerMotionWatch.ElapsedMilliseconds;
+        if (elapsedMilliseconds >= ModelConfiguration.MIN_TIME_BETWEEN_PLAYER_MOTIONS)
+        {
+          _playerMotionWatch.Restart();
+          Game.MovePlayer(_keyDirections[args.Key]);
+        }
+        else
+        {
+          _playerMotionWatch.Start();
+        }
       }
     }
   }
