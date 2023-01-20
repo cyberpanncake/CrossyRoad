@@ -41,7 +41,8 @@ namespace CrossyRoad_WpfView._Game
     {
       _countDownElement = new TextBlock
       {
-        FontSize = 40,
+        FontSize = WpfViewConfiguration.COUNTDOWN_FONT_SIZE,
+        FontWeight = FontWeights.Bold,
         HorizontalAlignment = HorizontalAlignment.Center,
         VerticalAlignment = VerticalAlignment.Center
       };
@@ -67,6 +68,9 @@ namespace CrossyRoad_WpfView._Game
       });
     }
 
+    /// <summary>
+    /// Отображает обратный отсчёт перед началом игры
+    /// </summary>
     private void DrawCountDown()
     {
       for (int i = 3; i > 0; i--)

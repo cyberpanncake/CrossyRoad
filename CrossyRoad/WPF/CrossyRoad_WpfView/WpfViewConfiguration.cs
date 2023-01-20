@@ -56,6 +56,10 @@ namespace CrossyRoad_WpfView
     /// </summary>
     public const int LOGO_FONT_SIZE = 50;
     /// <summary>
+    /// Размер шрифта надписи с обратным отсчётом пере игрой
+    /// </summary>
+    public const int COUNTDOWN_FONT_SIZE = 50;
+    /// <summary>
     /// Шрифт логотипа
     /// </summary>
     public static readonly FontFamily LogoFontFamily = new FontFamily("Jokerman");

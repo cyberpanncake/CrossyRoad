@@ -18,7 +18,7 @@ namespace CrossyRoad_View._Game
     /// <summary>
     /// Представление игрового поля
     /// </summary>
-    protected GameFieldView GameFieldView { get; }
+    public GameFieldView GameFieldView { get; }
     /// <summary>
     /// Поток выполнения отображения игрового процесса
     /// </summary>

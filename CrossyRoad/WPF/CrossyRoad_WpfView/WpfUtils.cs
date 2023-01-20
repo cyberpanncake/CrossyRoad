@@ -130,7 +130,7 @@ namespace CrossyRoad_WpfView
     /// <summary>
     /// Добавляет обработчик ввода текста приложения WPF
     /// </summary>
-    /// <param name="parSizeChangedHandler">Обработчик ввода текста</param>
+    /// <param name="parTextInputHandler">Обработчик ввода текста</param>
     public static void AddPreviewTextInputHandlerToWindow(TextCompositionEventHandler parTextInputHandler)
     {
       _window.PreviewTextInput += parTextInputHandler;
@@ -139,10 +139,28 @@ namespace CrossyRoad_WpfView
     /// <summary>
     /// Удаляет обработчик ввода текста приложения WPF
     /// </summary>
-    /// <param name="parSizeChangedHandler">Обработчик ввода текста</param>
+    /// <param name="parTextInputHandler">Обработчик ввода текста</param>
     public static void RemovePreviewTextInputHandlerToWindow(TextCompositionEventHandler parTextInputHandler)
     {
       _window.PreviewTextInput -= parTextInputHandler;
+    }
+
+    /// <summary>
+    /// Добавляет обработчик изменения размеров окна приложения WPF
+    /// </summary>
+    /// <param name="parSizeChangedHandler">Обработчик изменения размеров окна</param>
+    public static void AddSizeChangedHandlerToWindow(SizeChangedEventHandler parSizeChangedHandler)
+    {
+      _window.SizeChanged += parSizeChangedHandler;
+    }
+
+    /// <summary>
+    /// Удаляет обработчик изменения размеров окна приложения WPF
+    /// </summary>
+    /// <param name="parSizeChangedHandler">Обработчик изменения размеров окна</param>
+    public static void RemoveSizeChangedHandlerToWindow(SizeChangedEventHandler parSizeChangedHandler)
+    {
+      _window.SizeChanged -= parSizeChangedHandler;
     }
     #endregion
     #endregion

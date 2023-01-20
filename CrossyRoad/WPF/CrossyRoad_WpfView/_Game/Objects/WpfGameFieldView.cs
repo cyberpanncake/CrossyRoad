@@ -110,12 +110,12 @@ namespace CrossyRoad_WpfView._Game.Objects
     /// </summary>
     public override async void Draw()
     {
-      try
+      await Task.Run(() =>
       {
-        await Task.Run(() =>
+        CalculateScaleAndChangeCanvasSize();
+        WpfUtils.Dispatcher.Invoke(() =>
         {
-          CalculateScaleAndChangeCanvasSize();
-          WpfUtils.Dispatcher.Invoke(() =>
+          try
           {
             foreach (LevelView elLevelView in LevelsViews.Values)
             {
@@ -125,12 +125,12 @@ namespace CrossyRoad_WpfView._Game.Objects
             _image.Children.Clear();
             AddGameObjectsElementsToGameField();
             WpfUtils.DrawOnWindow(Element);
-          });
+          }
+          catch (TaskCanceledException)
+          {
+          }
         });
-      }
-      catch (TaskCanceledException)
-      {
-      }
+      });
     }
 
     /// <summary>

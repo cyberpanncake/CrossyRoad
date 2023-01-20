@@ -7,9 +7,11 @@ using CrossyRoad_WpfController._GameOver;
 using CrossyRoad_WpfController._Menu;
 using CrossyRoad_WpfView;
 using CrossyRoad_WpfView._Game;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CrossyRoad_WpfController._Game
@@ -46,7 +48,18 @@ namespace CrossyRoad_WpfController._Game
     {
       Game.GameOver += StopGame;
       ((WpfGameView)GameView).CountDownEnded += StartGame;
+      WpfUtils.AddSizeChangedHandlerToWindow(RedrawGameField);
       ((WpfGameView)GameView).DrawWithCountDown();
+    }
+
+    /// <summary>
+    /// Перерисовывает игровое поле при изменении размеров окна
+    /// </summary>
+    /// <param name="sender">Объект, пославший событие</param>
+    /// <param name="e">Аргументы события изменения размеров окна</param>
+    private void RedrawGameField(object sender, SizeChangedEventArgs e)
+    {
+      GameView.GameFieldView.Draw();
     }
 
     /// <summary>
@@ -54,6 +67,7 @@ namespace CrossyRoad_WpfController._Game
     /// </summary>
     private void StartGame()
     {
+      WpfUtils.RemoveSizeChangedHandlerToWindow(RedrawGameField);
       Game.Start();
       GameView.StartDrawing(WpfViewConfiguration.GAME_REDRAW_PERIOD);
       WpfUtils.AddKeyDownHandlerToWindow(KeyDownEventHandler);
