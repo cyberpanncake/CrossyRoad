@@ -5,6 +5,7 @@ using CrossyRoad_View._Game.Objects;
 using CrossyRoad_WpfView._Game.Objects;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CrossyRoad_WpfView._Game
@@ -26,6 +27,10 @@ namespace CrossyRoad_WpfView._Game
     /// Графический элемент отображения набранных очков
     /// </summary>
     private TextBlock _scoreElement;
+    /// <summary>
+    /// Графический элемент отображения обратного отсчёта
+    /// </summary>
+    private TextBlock _countDownElement;
 
     /// <summary>
     /// Конструктор представления игрового процесса в консольном приложении
@@ -34,6 +39,14 @@ namespace CrossyRoad_WpfView._Game
     public WpfGameView(Game parGame)
       : base(parGame)
     {
+      _countDownElement = new TextBlock
+      {
+        FontSize = 40,
+        HorizontalAlignment = HorizontalAlignment.Center,
+        VerticalAlignment = VerticalAlignment.Center
+      };
+      Grid.SetColumn(_countDownElement, 1);
+      _ = ((WpfGameFieldView)GameFieldView).Element.Children.Add(_countDownElement);
     }
 
     /// <summary>
@@ -49,8 +62,29 @@ namespace CrossyRoad_WpfView._Game
         Thread.Sleep(100);
         base.Draw();
         DrawScore(0);
-        Thread.Sleep(3000);
+        DrawCountDown();
         CountDownEnded?.Invoke();
+      });
+    }
+
+    private void DrawCountDown()
+    {
+      for (int i = 3; i > 0; i--)
+      {
+        WpfUtils.Dispatcher.Invoke(() =>
+        {
+          _countDownElement.Text = i.ToString();
+        });
+        Thread.Sleep(1000);
+      }
+      WpfUtils.Dispatcher.Invoke(() =>
+      {
+        _countDownElement.Text = "Старт!";
+      });
+      Thread.Sleep(200);
+      WpfUtils.Dispatcher.Invoke(() =>
+      {
+        ((WpfGameFieldView)GameFieldView).Element.Children.Remove(_countDownElement);
       });
     }
 
