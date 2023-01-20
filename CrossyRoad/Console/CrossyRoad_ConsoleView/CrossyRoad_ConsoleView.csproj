@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\bush.bin" />
+    <None Remove="Resources\carB.bin" />
+    <None Remove="Resources\carG.bin" />
+    <None Remove="Resources\carM.bin" />
+    <None Remove="Resources\carR.bin" />
+    <None Remove="Resources\log2.bin" />
+    <None Remove="Resources\log3.bin" />
+    <None Remove="Resources\log4.bin" />
+    <None Remove="Resources\player.bin" />
+    <None Remove="Resources\stone.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\bush.bin" />
+    <EmbeddedResource Include="Resources\carB.bin" />
+    <EmbeddedResource Include="Resources\carG.bin" />
+    <EmbeddedResource Include="Resources\carM.bin" />
+    <EmbeddedResource Include="Resources\carR.bin" />
+    <EmbeddedResource Include="Resources\log2.bin" />
+    <EmbeddedResource Include="Resources\log3.bin" />
+    <EmbeddedResource Include="Resources\log4.bin" />
+    <EmbeddedResource Include="Resources\player.bin" />
+    <EmbeddedResource Include="Resources\stone.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonMVC\CrossyRoad_View\CrossyRoad_View.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

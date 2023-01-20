@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\field.png" />
+    <None Remove="Resources\log2.png" />
+    <None Remove="Resources\log3.png" />
+    <None Remove="Resources\log4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\bush.png" />
+    <Resource Include="Resources\car blue.png" />
+    <Resource Include="Resources\car green.png" />
+    <Resource Include="Resources\car purple.png" />
+    <Resource Include="Resources\car red.png" />
+    <Resource Include="Resources\field.png" />
+    <Resource Include="Resources\log2.png" />
+    <Resource Include="Resources\log3.png" />
+    <Resource Include="Resources\log4.png" />
+    <Resource Include="Resources\player.png" />
+    <Resource Include="Resources\river.png" />
+    <Resource Include="Resources\road.png" />
+    <Resource Include="Resources\stone.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonMVC\CrossyRoad_Model\CrossyRoad_Model.csproj" />
+    <ProjectReference Include="..\..\CommonMVC\CrossyRoad_View\CrossyRoad_View.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
